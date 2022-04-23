@@ -21,11 +21,11 @@ const cosineDistance = (ebd1, ebd2) => {
 };
 
 const compare = async (img1, img2) => {
-	const model = await tf.loadLayersModel("file://./arcface/model.json");
+	const model = await tf.loadLayersModel("file://./face_recognition/arcface/model.json");
 	const ebd1 = model.predict(processImg(img1));
 	const ebd2 = model.predict(processImg(img2));
 	const dist = cosineDistance(ebd1, ebd2);
 	return dist;
 };
 
-compare(img1, img2);
+compare(img1, img2).then((d) => d.print());
