@@ -35,6 +35,7 @@ const compareImgs = async (img1, img2) => {
 };
 
 const compare = async (anchorEbd, imgBuffer, threshold = ArcFace_THRESHOLD) => {
+	var anchorEbd = tf.tensor(anchorEbd)
 	var imgEbd = await getEmbeddings(imgBuffer);
 	var cosDist = await cosineDistance(anchorEbd, imgEbd);
 	var similar = await cosDist.array() <= threshold;

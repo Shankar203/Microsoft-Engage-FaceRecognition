@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const morgan = require("morgan");
 
-const { compare, compareImgs, getEmbeddings } = require("./face_recognition/recognize.js");
+const { compare, getEmbeddings } = require("./face_recognition/recognize.js");
 const { User } = require("./models/userModel.js");
 
 const app = express();
@@ -46,6 +46,29 @@ app.post("/api/signup", upload.single("pic"), async (req, res) => {
 		console.error(err);
 		res.status(400).json(err);
 	}
+});
+
+app.post("/api/login", upload.single("pic"), async (req, res) => {
+	try {
+		const user = await User.find({ email: req.body.email });
+		if (user.length == 0) throw new Error("User Doesn't Exist");
+
+		const anchorEbd = user[0]["facialEmbeddings"];
+		const similar = await compare(anchorEbd, req.file.buffer);
+		if (!similar) throw new Error("Face Doesn't matched, Try Again");
+
+		const tok = createToken(user[0]["_id"], "2h");
+		res.cookie("enggage_jwt", tok, { maxAge: 2 * 60 * 60 * 1000, httpOnly: true });
+		res.status(200).json({ msg: "Login Successful" });
+	} catch (err) {
+		console.error(err);
+		res.status(400).json(err);
+	}
+});
+
+app.get("/api/logout", (req, res) => {
+	res.cookie("engage_jwt", "", { maxAge: 10 });
+	res.status(200).json({ msg: "Logged Out Successfully" });
 });
 
 app.get("/api", (req, res) => {
