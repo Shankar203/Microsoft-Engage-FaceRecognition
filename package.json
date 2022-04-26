@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Shankar203/Microsoft-Engage-FaceRecognition#readme",
   "dependencies": {
     "cookie-parser": "^1.4.6",
+    "@tensorflow/tfjs-node": "^3.16.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-mongo-sanitize": "^2.2.0",
