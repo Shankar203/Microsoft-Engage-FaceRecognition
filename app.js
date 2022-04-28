@@ -1,17 +1,30 @@
+require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
+const mongoSanitize = require("express-mongo-sanitize");
+const cookieParser = require("cookie-parser");
+const multer = require("multer");
 const morgan = require("morgan");
 
 const app = express();
 const PORT = process.env.PORT || 3080;
 
 app.use(morgan("tiny"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cookieParser());
+app.use(mongoSanitize());
 
-app.get("/api", (req,res) => {
-	const data = {
-		username: "random name",
-		age: -1,
-	};
-	res.status(200).json(data);
-});
+
+mongoose
+	.connect(process.env.MONGO_URI)
+	.then(() => console.log("Successful DB connection"))
+	.catch((err) => console.error("DB connection fail"));
+
+const userRoutes = require("./routes/userRoutes.js");
+const protectedRoutes = require("./routes/protectedRoutes.js");
+
+app.use("/", protectedRoutes);
+app.use("/api/user", userRoutes);
 
 app.listen(3080, console.log("server started at port: " + PORT));
