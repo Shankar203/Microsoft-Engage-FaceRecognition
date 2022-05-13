@@ -3,7 +3,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const mongoSanitize = require("express-mongo-sanitize");
 const cookieParser = require("cookie-parser");
-const multer = require("multer");
 const morgan = require("morgan");
 
 const app = express();
@@ -19,7 +18,7 @@ app.use(mongoSanitize());
 mongoose
 	.connect(process.env.MONGO_URI)
 	.then(() => console.log("Successful DB connection"))
-	.catch((err) => console.error("DB connection fail"));
+	.catch((err) => console.error("DB connection failed"));
 
 const userRoutes = require("./routes/userRoutes.js");
 const protectedRoutes = require("./routes/protectedRoutes.js");
