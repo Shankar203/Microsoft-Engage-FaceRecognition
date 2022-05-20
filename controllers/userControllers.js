@@ -1,6 +1,6 @@
 const { User } = require("../models/userModel.js");
 const { createToken } = require("../middlewares/userAuth.js");
-const { compare, getEmbeddings } = require("../face_recognition/recognize.js");
+const { compare, getFacialEmbeddings } = require("../face_recognition/recognize.js");
 
 
 const login = async (req, res, next) => {
@@ -26,7 +26,7 @@ const signup = async (req, res, next) => {
 		const userExists = await User.exists({ email: req.body.email });
 		if (userExists) throw new Error("User Already Exists");
 
-		const userEbd = await getEmbeddings(req.file.buffer);
+		const userEbd = await getFacialEmbeddings(req.file.buffer);
 		const userEbdArr = await userEbd.array();
 
 		const user = { email: req.body.email, name: req.body.name, facialEmbeddings: userEbdArr };
