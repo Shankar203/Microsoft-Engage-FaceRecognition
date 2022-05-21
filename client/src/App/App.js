@@ -1,9 +1,12 @@
 // import logo from './logo.svg';
-import './App.css';
+import Navbar from '../components/Navbar';
+import Signup from '../routes/Signup';
+import '../styles/App.css';
 
 function App() {
   return (
     <div className="App">
+      <Signup />
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
