@@ -26,6 +26,7 @@ jobs:
           cd client
           yarn install
           yarn run build
+          yarn start
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
