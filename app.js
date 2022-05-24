@@ -26,7 +26,7 @@ mongoose
 const userRoutes = require("./routes/userRoutes.js");
 const protectedRoutes = require("./routes/protectedRoutes.js");
 
-app.use("/", protectedRoutes);
+app.use("/check", protectedRoutes);
 app.use("/api/user", userRoutes);
 app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname, "client", "build", "index.html"));
