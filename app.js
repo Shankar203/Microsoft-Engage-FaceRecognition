@@ -1,4 +1,4 @@
-require("dotenv").config();
+// require("dotenv").config();
 const cors = require("cors");
 const path = require("path");
 const express = require("express");
@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 
 const app = express();
-const PORT = process.env.PORT || 3080;
+const PORT = 8080;
 
 app.use(cors());
 app.use(morgan("tiny"));
@@ -19,7 +19,7 @@ app.use(mongoSanitize());
 app.use(express.static(path.join(__dirname, "client", "build")));
 
 mongoose
-	.connect(process.env.MONGO_URI)
+	.connect("mongodb+srv://engageUser:INdKnD1IUn60II7a@cluster1.zeqni.mongodb.net/Engage_Database")
 	.then(() => console.log("Successful DB connection"))
 	.catch((err) => console.error("DB connection failed"));
 
