@@ -25,7 +25,7 @@ jobs:
         run: |
           cd client
           yarn install
-          yarn run build
+          yarn build
           yarn start
 
       - name: Upload artifact for deployment job
