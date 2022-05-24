@@ -23,6 +23,7 @@ jobs:
 
       - name: yarn install, build, and test
         run: |
+          yarn install
           cd client
           yarn install
 
