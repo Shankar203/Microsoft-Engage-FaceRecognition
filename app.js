@@ -16,6 +16,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(mongoSanitize());
 
+app.use(express.static(path.join(__dirname, "client", "build")))
+
 
 mongoose
 	.connect(process.env.MONGO_URI)
