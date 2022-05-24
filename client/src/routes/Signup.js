@@ -1,19 +1,41 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import CamPreview from "../components/CamPreview";
 
 const Signup = () => {
+	const emailRef = useRef()
+	const nameRef = useRef()
+	const videoParentRef = useRef();
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState(false);
 	const [loading, setLoading] = useState(false);
 
+	const getImage = () => {
+		const canvas = document.createElement("canvas");
+		canvas.width = videoParentRef.current.firstElementChild.videoWidth;
+		canvas.height = videoParentRef.current.firstElementChild.videoHeight;
+		const canvasCtx = canvas.getContext("2d");
+		canvasCtx.drawImage(videoParentRef.current.firstElementChild, 0, 0);
+		const imgURL = canvas.toDataURL();
+		return imgURL;
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		const formData = new FormData()
+		formData.append("email", emailRef.current.value)
+		formData.append("name", nameRef.current.value)
+		formData.append("pic", getImage())
+		const res = await axios.post("http://localhost:3080/api/user/signup/", formData)
+		console.log(res);
 	};
+
 	return (
 		<div>
 			<Navbar />
-			<div style={{ maxWidth: "400px" }} className="card mx-auto">
+			<div style={{ maxWidth: "450px" }} className="mt-4 card mx-auto">
 				<form className="mx-4 card-body" onSubmit={handleSubmit}>
 					<h3 className="text-start card-title pt-4 pb-3">Create Account</h3>
 					{error && (
@@ -32,7 +54,7 @@ const Signup = () => {
 						className={"form-control my-3" + (error && " is-invalid")}
 						placeholder="email"
 						required
-						// ref={emailRef}
+						ref={emailRef}
 						disabled={loading}
 					/>
 					<input
@@ -40,10 +62,13 @@ const Signup = () => {
 						className={"form-control my-3" + (error && " is-invalid")}
 						placeholder="name"
 						required
-						// ref={emailRef}
+						ref={nameRef}
 						disabled={loading}
 					/>
-					<div className="d-grid mt-4">
+					<div className="position-relative w-100" ref={videoParentRef}>
+						<CamPreview />
+					</div>
+					<div className="d-grid mt-3">
 						<button type="submit" disabled={loading} className="btn btn-primary">
 							{loading && (
 								<span
@@ -55,20 +80,6 @@ const Signup = () => {
 							Sign Up
 						</button>
 					</div>
-					<div className="my-1 row justify-content-around">
-						<hr className="col-4 mt-3" /> or <hr className="col-4 mt-3" />
-					</div>
-					{/* <div className="fs-5">
-						<Link to="/signup/google">
-							<i className="bi bi-google mx-1"></i>
-						</Link>
-						<Link to="/signup/facebook">
-							<i className="bi bi-facebook mx-1"></i>
-						</Link>
-						<Link to="/signup/twitter">
-							<i className="bi bi-twitter mx-1"></i>
-						</Link>
-					</div>
 					<div className="mt-3 text-center text-muted">
 						<span>
 							Already have an account?
@@ -77,7 +88,7 @@ const Signup = () => {
 								Login
 							</Link>
 						</span>
-					</div> */}
+					</div>
 				</form>
 			</div>
 		</div>

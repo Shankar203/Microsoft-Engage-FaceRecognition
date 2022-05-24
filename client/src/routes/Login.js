@@ -1,18 +1,54 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import CamPreview from "../components/CamPreview";
 
-const Login = () => {
+const Signup = () => {
+	const emailRef = useRef()
+	const videoParentRef = useRef();
+	const fileRef = useRef();
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState(false);
 	const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    }
+	const getImage = () => {
+		const canvas = document.createElement("canvas");
+		canvas.width = videoParentRef.current.firstElementChild.videoWidth;
+		canvas.height = videoParentRef.current.firstElementChild.videoHeight;
+		const canvasCtx = canvas.getContext("2d");
+		canvasCtx.drawImage(videoParentRef.current.firstElementChild, 0, 0);
+		return canvas
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		// const res = await axios.get("http://localhost:3080/")
+		// console.log(res);
+		// const canvas = getImage()
+		const formData = new FormData()
+		formData.append("email", emailRef.current.value)
+		formData.append("pic", fileRef.current.files[0])
+		// canvas.toBlob((blob) => {
+			// 	formData.append("pic", blob)
+			// })
+			// const res = await axios.post("http://localhost:3080/api/user/login/", formData)
+			const res = await axios({
+				method: 'POST',
+				url: "http://localhost:3080/api/user/login",
+				data: formData,
+				// headers: {
+				// 	'Content-Type': 'application/json'
+				// },
+				withCredentials: true
+			})
+		console.log(res);
+	};
+
 	return (
 		<div>
-            <Navbar />
-			<div style={{ maxWidth: "400px" }} className="card mx-auto">
+			<Navbar />
+			<div style={{ maxWidth: "450px" }} className="mt-4 card mx-auto">
 				<form className="mx-4 card-body" onSubmit={handleSubmit}>
 					<h3 className="text-start card-title pt-4 pb-3">Create Account</h3>
 					{error && (
@@ -30,19 +66,24 @@ const Login = () => {
 						type="email"
 						className={"form-control my-3" + (error && " is-invalid")}
 						placeholder="email"
+						name="email"
 						required
-						// ref={emailRef}
+						ref={emailRef}
 						disabled={loading}
 					/>
 					<input
-						type="text"
+						type="file"
 						className={"form-control my-3" + (error && " is-invalid")}
-						placeholder="name"
+						placeholder="pic"
+						name="pic"
 						required
-						// ref={emailRef}
+						ref={fileRef}
 						disabled={loading}
 					/>
-					<div className="d-grid mt-4">
+					<div className="position-relative w-100" ref={videoParentRef}>
+						<CamPreview />
+					</div>
+					<div className="d-grid mt-3">
 						<button type="submit" disabled={loading} className="btn btn-primary">
 							{loading && (
 								<span
@@ -51,36 +92,19 @@ const Login = () => {
 									aria-hidden="true"
 								></span>
 							)}
-							Sign Up
+							Login
 						</button>
 					</div>
-					<div className="my-1 row justify-content-around">
-						<hr className="col-4 mt-3" /> or <hr className="col-4 mt-3" />
-					</div>
-					{/* <div className="fs-5">
-						<Link to="/signup/google">
-							<i className="bi bi-google mx-1"></i>
-						</Link>
-						<Link to="/signup/facebook">
-							<i className="bi bi-facebook mx-1"></i>
-						</Link>
-						<Link to="/signup/twitter">
-							<i className="bi bi-twitter mx-1"></i>
-						</Link>
-					</div>
 					<div className="mt-3 text-center text-muted">
-						<span>
-							Already have an account?
-							<Link to="/login" className="link-primary text-decoration-none">
-								{" "}
-								Login
-							</Link>
-						</span>
-					</div> */}
+					<span>
+						Don't have an account?
+						<Link to="/signup" className="link-primary text-decoration-none"> Sign Up</Link>
+					</span>
+					</div>
 				</form>
 			</div>
 		</div>
 	);
 };
 
-export default Login;
+export default Signup;

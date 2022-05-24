@@ -1,4 +1,5 @@
 require("dotenv").config();
+const cors = require('cors');
 const express = require("express");
 const mongoose = require("mongoose");
 const mongoSanitize = require("express-mongo-sanitize");
@@ -8,6 +9,7 @@ const morgan = require("morgan");
 const app = express();
 const PORT = process.env.PORT || 3080;
 
+app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
