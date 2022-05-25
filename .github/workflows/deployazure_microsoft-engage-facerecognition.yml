@@ -23,8 +23,7 @@ jobs:
 
       - name: yarn install, build, and test
         run: |
-          cd client
-          yarn install
+          npm install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
