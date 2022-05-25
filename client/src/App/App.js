@@ -7,6 +7,11 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
+				<Route path="/" element={
+					<div>
+						hello there, check....
+					</div>
+				} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/login" element={<Login />} />
 			</Routes>
