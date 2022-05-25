@@ -3,32 +3,26 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import CamPreview from "../components/CamPreview";
+import {imageCapturer} from "../components/imageCapturer"
 
 const Signup = () => {
 	const emailRef = useRef()
 	const videoParentRef = useRef();
-	const fileRef = useRef();
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState(false);
 	const [loading, setLoading] = useState(false);
 
-	const getImage = () => {
-		const canvas = document.createElement("canvas");
-		canvas.width = videoParentRef.current.firstElementChild.videoWidth;
-		canvas.height = videoParentRef.current.firstElementChild.videoHeight;
-		const canvasCtx = canvas.getContext("2d");
-		canvasCtx.drawImage(videoParentRef.current.firstElementChild, 0, 0);
-		return canvas
-	};
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		const formData = new FormData()
+		const email = emailRef.current.value
+		const imgFile = await imageCapturer({videoParentRef})
+		formData.append("email", email)
+		formData.append("pic", imgFile)
+		console.log(formData);
 		// const res = await axios.get("http://localhost:3080/")
 		// console.log(res);
 		// const canvas = getImage()
-		const formData = new FormData()
-		formData.append("email", emailRef.current.value)
-		formData.append("pic", fileRef.current.files[0])
 		// canvas.toBlob((blob) => {
 			// 	formData.append("pic", blob)
 			// })
@@ -40,7 +34,7 @@ const Signup = () => {
 				// headers: {
 				// 	'Content-Type': 'application/json'
 				// },
-				withCredentials: true
+				// withCredentials: true
 			})
 		console.log(res);
 	};
@@ -71,15 +65,6 @@ const Signup = () => {
 						ref={emailRef}
 						disabled={loading}
 					/>
-					<input
-						type="file"
-						className={"form-control my-3" + (error && " is-invalid")}
-						placeholder="pic"
-						name="pic"
-						required
-						ref={fileRef}
-						disabled={loading}
-					/>
 					<div className="position-relative w-100" ref={videoParentRef}>
 						<CamPreview />
 					</div>
@@ -108,3 +93,4 @@ const Signup = () => {
 };
 
 export default Signup;
+
