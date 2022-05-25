@@ -13,7 +13,7 @@
 /build
 
 # Local Netlify folder
-.netlify
+# .netlify
 
 # misc
 .DS_Store
