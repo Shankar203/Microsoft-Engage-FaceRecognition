@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(morgan("tiny"));

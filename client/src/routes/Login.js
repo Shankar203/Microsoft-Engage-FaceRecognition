@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import CamPreview from "../components/CamPreview";
+// import CamPreview from "../components/CamPreview";
 
 const Signup = () => {
 	const emailRef = useRef()
@@ -81,7 +81,7 @@ const Signup = () => {
 						disabled={loading}
 					/>
 					<div className="position-relative w-100" ref={videoParentRef}>
-						<CamPreview />
+						{/* <CamPreview /> */}
 					</div>
 					<div className="d-grid mt-3">
 						<button type="submit" disabled={loading} className="btn btn-primary">
