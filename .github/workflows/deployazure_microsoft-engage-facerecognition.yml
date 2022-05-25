@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'Microsoft-Engage-FaceRecognition'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6D4841A4DDB64B6580F949010254153C }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D55BB5E3E29B4592940E1B5B9BB3D516 }}
           package: .
