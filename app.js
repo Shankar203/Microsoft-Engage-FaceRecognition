@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(mongoSanitize());
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 
 mongoose
@@ -27,5 +28,8 @@ const protectedRoutes = require("./routes/protectedRoutes.js");
 
 app.use("/", protectedRoutes);
 app.use("/api/user", userRoutes);
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(3080, console.log("server started at port: " + PORT));
