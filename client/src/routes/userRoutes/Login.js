@@ -1,14 +1,9 @@
 import axios from "axios";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD:client/src/routes/Signup.js
-import Navbar from "../components/Navbar";
-// import CamPreview from "../components/CamPreview";
-=======
 import Navbar from "../../components/Navbar";
 import CamPreview from "../../components/CamPreview";
 import { imageCapturer } from "../../components/imageCapturer";
->>>>>>> main:client/src/routes/userRoutes/Login.js
 
 const Signup = () => {
 	const emailRef = useRef();
@@ -19,14 +14,6 @@ const Signup = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-<<<<<<< HEAD:client/src/routes/Signup.js
-		// const formData = new FormData()
-		// formData.append("email", emailRef.current.value)
-		// formData.append("name", nameRef.current.value)
-		// formData.append("pic", getImage())
-		// const res = await axios.post("http://localhost:3080/api/user/signup/", formData)
-		// console.log(res);
-=======
 		try {
 			setError("");
 			setLoading(true);
@@ -46,7 +33,6 @@ const Signup = () => {
 			setError(err.response ? err.response.data.msg : err.msg);
 			setLoading(false);
 		}
->>>>>>> main:client/src/routes/userRoutes/Login.js
 	};
 
 	return (
@@ -77,7 +63,7 @@ const Signup = () => {
 						disabled={loading}
 					/>
 					<div className="position-relative w-100" ref={videoParentRef}>
-						{/* <CamPreview /> */}
+						<CamPreview />
 					</div>
 					<div className="d-grid mt-3">
 						<button type="submit" disabled={loading || success} className="btn btn-primary">

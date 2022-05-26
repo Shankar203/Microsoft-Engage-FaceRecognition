@@ -22,7 +22,7 @@ app.use(mongoSanitize());
 app.use(express.static(path.join(__dirname, "client", "build")));
 
 mongoose
-	.connect(process.env.MONGO_URI)
+	.connect("mongodb+srv://engageUser:INdKnD1IUn60II7a@cluster1.zeqni.mongodb.net/Engage_Database")
 	.then(() => console.log("Successful DB connection"))
 	.catch((err) => console.error("DB connection failed"));
 
