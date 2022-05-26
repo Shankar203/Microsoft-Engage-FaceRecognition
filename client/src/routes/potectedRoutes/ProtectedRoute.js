@@ -8,7 +8,7 @@ const ProtectedRoute = () => {
 
 	useEffect(() => {
 		axios
-			.get("http://localhost:3080/api/user/authorize/", { withCredentials: true })
+			.get("https://microsoft-engage-facerecognition.azurewebsites.net/authorize/", { withCredentials: true })
 			.then((res) => setUser(res.data.user))
 			.catch((err) => setRedirectPath("/login"));
 	}, []);

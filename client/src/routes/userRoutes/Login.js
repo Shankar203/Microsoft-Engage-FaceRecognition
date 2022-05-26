@@ -22,7 +22,7 @@ const Signup = () => {
 			const imgFile = await imageCapturer({ videoParentRef });
 			formData.append("email", email);
 			formData.append("pic", imgFile);
-			const res = await axios.post("http://localhost:3080/api/user/login/", formData, {
+			const res = await axios.post("https://microsoft-engage-facerecognition.azurewebsites.net/login/", formData, {
 				withCredentials: true,
 			});
 			setSuccess(res.data.msg);
@@ -30,8 +30,7 @@ const Signup = () => {
 		} catch (err) {
 			e.target.reset();
 			console.error(err);
-			setSuccess("");
-			setError(err.response.data.msg);
+			setError(err.response ? err.response.data.msg : err.msg);
 			setLoading(false);
 		}
 	};
@@ -41,7 +40,7 @@ const Signup = () => {
 			<Navbar />
 			<div style={{ maxWidth: "450px" }} className="mt-4 card mx-auto">
 				<form className="mx-4 card-body" onSubmit={handleSubmit}>
-					<h3 className="text-start card-title pt-4 pb-3">Create Account</h3>
+					<h3 className="text-start card-title pt-4 pb-3">Login</h3>
 					{error && (
 						<div className="p-2 alert alert-danger" role="alert">
 							<i className="bi bi-exclamation-triangle-fill mx-1"></i>
