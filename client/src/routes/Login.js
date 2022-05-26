@@ -20,22 +20,19 @@ const Signup = () => {
 		formData.append("email", email)
 		formData.append("pic", imgFile)
 		console.log(formData);
-		// const res = await axios.get("http://localhost:3080/")
-		// console.log(res);
-		// const canvas = getImage()
-		// canvas.toBlob((blob) => {
-			// 	formData.append("pic", blob)
-			// })
-			// const res = await axios.post("http://localhost:3080/api/user/login/", formData)
-			const res = await axios({
-				method: 'POST',
-				url: "http://localhost:3080/api/user/login",
-				data: formData,
-				// headers: {
-				// 	'Content-Type': 'application/json'
-				// },
-				// withCredentials: true
-			})
+		const res = await fetch("https://microsoft-engage-facerecognition.azurewebsites.net/api/user/login/", {
+			method: "POST",
+			body: formData
+		})
+		// const res = await axios({
+		// 	method: 'POST',
+		// 	url: "https://microsoft-engage-facerecognition.azurewebsites.net/api/user/login/",
+		// 	data: formData,
+		// 	// headers: {
+		// 	// 	'Content-Type': 'application/json'
+		// 	// },
+		// 	// withCredentials: true
+		// })
 		console.log(res);
 	};
 
