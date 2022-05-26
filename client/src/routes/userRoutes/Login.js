@@ -1,39 +1,39 @@
-import { useRef, useState } from "react";
 import axios from "axios";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import CamPreview from "../components/CamPreview";
-import {imageCapturer} from "../components/imageCapturer"
+import Navbar from "../../components/Navbar";
+import CamPreview from "../../components/CamPreview";
+import { imageCapturer } from "../../components/imageCapturer";
 
 const Signup = () => {
-	const emailRef = useRef()
+	const emailRef = useRef();
 	const videoParentRef = useRef();
 	const [error, setError] = useState("");
-	const [success, setSuccess] = useState(false);
+	const [success, setSuccess] = useState("");
 	const [loading, setLoading] = useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const formData = new FormData()
-		const email = emailRef.current.value
-		const imgFile = await imageCapturer({videoParentRef})
-		formData.append("email", email)
-		formData.append("pic", imgFile)
-		console.log(formData);
-		const res = await fetch("https://microsoft-engage-facerecognition.azurewebsites.net/api/user/login/", {
-			method: "POST",
-			body: formData
-		})
-		// const res = await axios({
-		// 	method: 'POST',
-		// 	url: "https://microsoft-engage-facerecognition.azurewebsites.net/api/user/login/",
-		// 	data: formData,
-		// 	// headers: {
-		// 	// 	'Content-Type': 'application/json'
-		// 	// },
-		// 	// withCredentials: true
-		// })
-		console.log(res);
+		try {
+			setError("");
+			setLoading(true);
+			const formData = new FormData();
+			const email = emailRef.current.value;
+			const imgFile = await imageCapturer({ videoParentRef });
+			formData.append("email", email);
+			formData.append("pic", imgFile);
+			const res = await axios.post("http://localhost:3080/api/user/login/", formData, {
+				withCredentials: true,
+			});
+			setSuccess(res.data.msg);
+			setLoading(false);
+		} catch (err) {
+			e.target.reset();
+			console.error(err);
+			setSuccess("");
+			setError(err.response.data.msg);
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -50,7 +50,8 @@ const Signup = () => {
 					)}
 					{success && (
 						<div className="p-2 alert alert-success" role="alert">
-							<i className="bi bi-check-circle-fill mx-1"></i> Success
+							<i className="bi bi-check-circle-fill mx-1"></i>
+							{success}
 						</div>
 					)}
 					<input
@@ -66,7 +67,7 @@ const Signup = () => {
 						<CamPreview />
 					</div>
 					<div className="d-grid mt-3">
-						<button type="submit" disabled={loading} className="btn btn-primary">
+						<button type="submit" disabled={loading || success} className="btn btn-primary">
 							{loading && (
 								<span
 									className="spinner-grow spinner-grow-sm mx-1"
@@ -78,10 +79,13 @@ const Signup = () => {
 						</button>
 					</div>
 					<div className="mt-3 text-center text-muted">
-					<span>
-						Don't have an account?
-						<Link to="/signup" className="link-primary text-decoration-none"> Sign Up</Link>
-					</span>
+						<span>
+							Don't have an account?
+							<Link to="/signup" className="link-primary text-decoration-none">
+								{" "}
+								Sign Up
+							</Link>
+						</span>
 					</div>
 				</form>
 			</div>
@@ -90,4 +94,3 @@ const Signup = () => {
 };
 
 export default Signup;
-

@@ -2,7 +2,6 @@ const { User } = require("../models/userModel.js");
 const { createToken } = require("../middlewares/userAuth.js");
 const { compare, getFacialEmbeddings } = require("../face_recognition/recognize.js");
 
-
 const login = async (req, res, next) => {
 	try {
 		const user = await User.find({ email: req.body.email });
@@ -14,10 +13,10 @@ const login = async (req, res, next) => {
 
 		const token = createToken(user[0]["_id"], "2h");
 		res.cookie("engage_jwt", token, { maxAge: 2 * 60 * 60 * 1000, httpOnly: true });
-		res.status(200).json({ msg: "Login Successful" });
+		res.status(200).json({ access: true, msg: "Login Successful" });
 	} catch (err) {
 		console.error(err);
-		res.status(400).json(err);
+		res.status(400).json({ access: false, msg: err.message });
 	}
 };
 
@@ -34,16 +33,16 @@ const signup = async (req, res, next) => {
 
 		const token = createToken(u._id, "2h");
 		res.cookie("engage_jwt", token, { maxAge: 2 * 60 * 60 * 1000, httpOnly: true });
-		res.status(200).json({ msg: "User Created Successfully" });
+		res.status(200).json({ access: true, msg: "User Created Successfully" });
 	} catch (err) {
 		console.error(err);
-		res.status(400).json(err);
+		res.status(400).json({ access: false, msg: err.message });
 	}
 };
 
 const logout = (req, res, next) => {
 	res.cookie("engage_jwt", "", { maxAge: 10 });
-	res.status(200).json({ msg: "Logged Out Successfully" });
+	res.status(200).json({ access: true, msg: "Logged Out Successfully" });
 };
 
 module.exports = { signup, login, logout };

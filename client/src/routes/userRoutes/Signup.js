@@ -1,38 +1,42 @@
-import { useRef, useState } from "react";
 import axios from "axios";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import CamPreview from "../components/CamPreview";
+import Navbar from "../../components/Navbar";
+import CamPreview from "../../components/CamPreview";
+import { imageCapturer } from "../../components/imageCapturer";
 
 const Signup = () => {
-	const emailRef = useRef()
-	const nameRef = useRef()
+	const emailRef = useRef();
+	const nameRef = useRef();
 	const videoParentRef = useRef();
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState(false);
 	const [loading, setLoading] = useState(false);
 
-	const getImage = () => {
-		const canvas = document.createElement("canvas");
-		canvas.width = videoParentRef.current.firstElementChild.videoWidth;
-		canvas.height = videoParentRef.current.firstElementChild.videoHeight;
-		const canvasCtx = canvas.getContext("2d");
-		canvasCtx.drawImage(videoParentRef.current.firstElementChild, 0, 0);
-		const imgURL = canvas.toDataURL();
-		return imgURL;
-	};
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const formData = new FormData()
-		formData.append("email", emailRef.current.value)
-		formData.append("name", nameRef.current.value)
-		formData.append("pic", getImage())
-		const res = await fetch("https://microsoft-engage-facerecognition.azurewebsites.net/api/user/signup/", {
-			method: "POST",
-			body: formData
-		})
-		console.log(res);
+		try {
+			setError("");
+			setLoading(true);
+			const formData = new FormData();
+			const email = emailRef.current.value;
+			const name = nameRef.current.value;
+			const imgFile = await imageCapturer({ videoParentRef });
+			formData.append("email", email);
+			formData.append("name", name);
+			formData.append("pic", imgFile);
+			const res = await axios.post("http://localhost:3080/api/user/signup/", formData, {
+				withCredentials: true,
+			});
+			setSuccess(res.data.msg);
+			setLoading(false);
+		} catch (err) {
+			e.target.reset();
+			console.error(err);
+			setSuccess("");
+			setError(err.response.data.msg);
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -49,7 +53,8 @@ const Signup = () => {
 					)}
 					{success && (
 						<div className="p-2 alert alert-success" role="alert">
-							<i className="bi bi-check-circle-fill mx-1"></i> Success
+							<i className="bi bi-check-circle-fill mx-1"></i>
+							{success}
 						</div>
 					)}
 					<input

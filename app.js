@@ -1,15 +1,18 @@
 require("dotenv").config();
-const cors = require('cors');
 const express = require("express");
 const mongoose = require("mongoose");
 const mongoSanitize = require("express-mongo-sanitize");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 
+const corsHandle = require("./middlewares/corsHandle");
+const userRoutes = require("./routes/userRoutes.js");
+const protectedRoutes = require("./routes/protectedRoutes.js");
+
 const app = express();
 const PORT = process.env.PORT || 3080;
 
-app.use(cors());
+app.use(corsHandle);
 app.use(morgan("tiny"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,8 +25,6 @@ mongoose
 	.then(() => console.log("Successful DB connection"))
 	.catch((err) => console.error("DB connection failed"));
 
-const userRoutes = require("./routes/userRoutes.js");
-const protectedRoutes = require("./routes/protectedRoutes.js");
 
 app.use("/", protectedRoutes);
 app.use("/api/user", userRoutes);

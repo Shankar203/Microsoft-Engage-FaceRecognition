@@ -16,11 +16,11 @@ const isLoggedin = async function (req, res, next) {
 		const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
 		const user = await User.findById(decodedToken._id);
 
-		res.locals.user = user;
+		res.locals.user = { name: user.name, email: user.email, prevLogin: user.createdAt };
 		next();
 	} catch (err) {
 		console.error(err);
-		res.status(400).json(err);
+		res.status(400).json({ access: false, msg: err.message });
 	}
 };
 
