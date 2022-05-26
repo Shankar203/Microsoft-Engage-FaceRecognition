@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3080;
 
 app.use(cors());
 app.use(morgan("tiny"));
@@ -50,4 +50,4 @@ app.use(function (err, req, res, next) {
 
 module.exports = app;
 
-app.listen(3080, console.log("server started at port: " + PORT));
+app.listen(PORT, console.log("server started at port: " + PORT));
