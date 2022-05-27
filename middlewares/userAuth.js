@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../models/userModel.js");
 
 function createToken(_id, maxAge) {
-	const token = jwt.sign({ _id }, "engage_jwt", { expiresIn: maxAge });
+	const token = jwt.sign({ _id }, process.env.JWT_SECRET_KEY, { expiresIn: maxAge });
 	return token;
 }
 
@@ -13,7 +13,7 @@ const isLoggedin = async function (req, res, next) {
 		const token = req.cookies.engage_jwt;
 		if (!token) throw new Error("Please Login");
 
-		const decodedToken = jwt.verify(token, "engage_jwt");
+		const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
 		const user = await User.findById(decodedToken._id);
 
 		res.locals.user = { name: user.name, email: user.email, prevLogin: user.createdAt };
