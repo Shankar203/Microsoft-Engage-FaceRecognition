@@ -33,7 +33,7 @@ const PORT = process.env.PORT || 3080;
  */
 app.use(corsHandle);
 app.use(morgan("tiny"));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(mongoSanitize());

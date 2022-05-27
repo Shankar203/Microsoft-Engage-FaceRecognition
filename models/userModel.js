@@ -20,9 +20,15 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	password: {
+		type: String,
+		required: true,
+	},
+	tOTPSecret: {
+		type: String,
+	},
 	facialEmbeddings: {
 		type: Array,
-		required: true,
 	},
 	createdAt: {
 		type: Date,

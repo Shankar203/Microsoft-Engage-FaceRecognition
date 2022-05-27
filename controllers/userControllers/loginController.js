@@ -1,15 +1,15 @@
+const bcrypt = require("bcrypt");
 const { User } = require("../../models/userModel.js");
 const { createToken } = require("../../middlewares/userAuth.js");
 const { compare } = require("../../face_recognition/recognize.js");
 
-
 /**
  * User Controller, fires Asynchronously over /login route
- * 
- * Check if User exists, and get the corresponding embedding vector now compare them 
+ *
+ * Check if User exists, and get the corresponding embedding vector now compare them
  * with the generated embeddings, if similarity is greater than a threshold, send a cookie
  * else log error to console setting status code to 400.
- * 
+ *
  * @param {object} req Parsed json object received from Client
  * @param {object} res Parsed json object Set to the Client
  * @param {function} next function fired to move to next middleware
@@ -36,4 +36,4 @@ const login = async (req, res, next) => {
 	}
 };
 
-module.exports.login = login;
+module.exports = { login };

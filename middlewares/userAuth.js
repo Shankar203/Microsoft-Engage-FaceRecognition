@@ -6,12 +6,12 @@ const { User } = require("../models/userModel.js");
 /**
  * Synchronously sign the given payload into a JSON Web Token string payload
  * 
- * @param {string} _id Unique Identifer for the token
+ * @param {object} cookiePayload Info to be stored in cookie
  * @param {time} maxAge Max life span of token in secs 
  * @returns {string} A JWT Signed Token
  */
-function createToken(_id, maxAge) {
-	const token = jwt.sign({ _id }, process.env.JWT_SECRET_KEY, { expiresIn: maxAge });
+function createToken(cookiePayload, maxAge) {
+	const token = jwt.sign(cookiePayload, process.env.JWT_SECRET_KEY, { expiresIn: maxAge });
 	return token;
 }
 
@@ -34,7 +34,7 @@ const isLoggedin = async function (req, res, next) {
 		const user = await User.findById(decodedToken._id);
 
 		// Save user info to locals, and move to next middleware
-		res.locals.user = { name: user.name, email: user.email, prevLogin: user.createdAt };
+		res.locals.user = { fac: decodedToken.fac, ...user };
 		next();
 	} catch (err) {
 		console.error(err);
