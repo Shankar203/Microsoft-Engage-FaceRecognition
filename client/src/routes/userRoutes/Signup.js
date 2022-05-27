@@ -23,7 +23,7 @@ const Signup = () => {
 			formData.append("email", emailRef.current.value);
 			formData.append("name", nameRef.current.value);
 			formData.append("pic", facePoses.at(-1));
-			const res = await axios.post("https://microsoft-engage-facerecognition.azurewebsites.net/signup/", formData, {
+			const res = await axios.post("https://microsoft-engage-facerecognition.azurewebsites.net/api/user/signup/", formData, {
 				withCredentials: true,
 			});
 			setSuccess(res.data.msg);
