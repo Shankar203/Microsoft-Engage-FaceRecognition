@@ -26,11 +26,12 @@ const postLogin_f2 = async (req, res, next) => {
 		// Check if User trys to bypass prev authentication steps
 		if (!res.locals.user.fac) throw new Error("Can't Skip factor1");
 
+		// Verify the tOTP from the res, through tOTPSecret
 		const tOTPVerified = speakeasy.totp.verify({
 			secret: res.locals.user._doc.tOTPSecret,
 			encoding: "base32",
 			token: req.body.tOTP,
-            window: 1
+			window: 1,
 		});
 		if (!tOTPVerified) throw new Error("OTP Timed Out");
 

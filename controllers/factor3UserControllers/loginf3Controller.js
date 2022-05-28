@@ -16,7 +16,7 @@ const { compare } = require("../../face_recognition/recognize.js");
  */
 const login = async (req, res, next) => {
 	try {
-		// Check if User exists, email as an unique identifier, throw error if does'nt
+		// Check if User exists, using email as an unique identifier, throw error if does'nt
 		const user = await User.find({ email: req.body.email });
 		if (user.length == 0) throw new Error("User Doesn't Exist");
 
