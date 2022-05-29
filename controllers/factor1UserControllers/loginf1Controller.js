@@ -28,7 +28,7 @@ const login_f1 = async (req, res, next) => {
 		// Create a Cookie, setting fac to 1 and append it to the Resonse Object
 		const token = createToken({ _id: user[0]["_id"], fac: 1 }, "2h");
 		res.cookie("engage_jwt", token, { maxAge: 2 * 60 * 60 * 1000, httpOnly: true });
-		res.status(200).json({ access: true, fac: 1, msg: "Login Successful" });
+		res.status(200).json({ access: true, fac: 1, msg: "Authentication Successful" });
 	} catch (err) {
 		console.error(err);
 		res.status(400).json({ access: false, fac: 1, msg: err.message });

@@ -32,6 +32,7 @@ const isLoggedin = async function (req, res, next) {
 		// Verify cookie signature, and query db if user exists
 		const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
 		const user = await User.findById(decodedToken._id);
+		if (!user) throw new Error("Could'nt find User");
 
 		// Save user info to locals, and move to next middleware
 		res.locals.user = { fac: decodedToken.fac, ...user };

@@ -8,6 +8,9 @@ const getLogin_f2 = async (req, res, next) => {
 		// Check if User trys to bypass prev authentication steps
 		if (!res.locals.user.fac) throw new Error("Can't Skip factor1");
 
+		// QR Code per user should be only generated once
+		if (res.locals.user._doc.tOTPSecret) throw new Error("User has already paired with the QR Code");
+
 		// Create temporary secret, and convert tOTPauthURL to dataURL
 		const tOTPSecret = speakeasy.generateSecret();
 		const tOTPauthURL = await QRcode.toDataURL(tOTPSecret.otpauth_url);
@@ -38,7 +41,7 @@ const postLogin_f2 = async (req, res, next) => {
 		// Create a Cookie, setting fac to 1 and append it to the Resonse Object
 		const token = createToken({ _id: res.locals.user._doc._id, fac: 2 }, "2h");
 		res.cookie("engage_jwt", token, { maxAge: 2 * 60 * 60 * 1000, httpOnly: true });
-		res.status(200).json({ access: true, fac: 2, msg: "Login Successful" });
+		res.status(200).json({ access: true, fac: 2, msg: "Authentication Successful" });
 	} catch (err) {
 		console.error(err);
 		res.status(400).json({ access: false, fac: 2, msg: err.message });
