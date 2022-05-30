@@ -24,6 +24,10 @@ const Loginf3 = () => {
 			});
 			setSuccess(res.data.msg);
 			setLoading(false);
+			setTimeout(() => {
+				alert(res.data.msg);
+				navigate("/");
+			}, 100);
 		} catch (err) {
 			e.target.reset();
 			console.error(err);
