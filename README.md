@@ -1,4 +1,4 @@
-# Three Faactor Authentication
+# Three Factor Authentication
 ## Imp Links
 - Microsoft Azure: https://microsoft-engage-facerecognition.azurewebsites.net/
 - Google GCP: https://microsoft-engage-facerecognition.azurewebsites.net/
