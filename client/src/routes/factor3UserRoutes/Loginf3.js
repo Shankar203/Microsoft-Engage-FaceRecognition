@@ -19,7 +19,7 @@ const Loginf3 = () => {
 			const formData = new FormData();
 			const imgFile = await imageCapturer({ videoParentRef });
 			formData.append("pic", imgFile);
-			const res = await axios.post("http://localhost:3080/api/user/login3", formData, {
+			const res = await axios.post("https://microsoft-engage-facerecognition.azurewebsites.net/api/user/login3", formData, {
 				withCredentials: true,
 			});
 			setSuccess(res.data.msg);

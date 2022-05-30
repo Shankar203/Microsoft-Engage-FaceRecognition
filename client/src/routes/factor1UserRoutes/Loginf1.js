@@ -17,7 +17,7 @@ const Loginf1 = () => {
 			setError("");
 			setLoading(true);
 			const res = await axios.post(
-				"http://localhost:3080/api/user/login1",
+				"https://microsoft-engage-facerecognition.azurewebsites.net/api/user/login1",
 				{
 					email: emailRef.current.value,
 					password: passwordRef.current.value,

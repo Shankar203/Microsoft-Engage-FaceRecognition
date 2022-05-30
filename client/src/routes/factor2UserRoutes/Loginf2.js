@@ -13,7 +13,7 @@ const Loginf2 = () => {
 
 	useEffect(() => {
 		axios
-			.get("http://localhost:3080/api/user/login2", { withCredentials: true })
+			.get("https://microsoft-engage-facerecognition.azurewebsites.net/api/user/login2", { withCredentials: true })
 			.then((res) => setTOTPauthURL(res.data.tOTPauthURL))
 			.catch(console.error);
 	}, []);
@@ -24,7 +24,7 @@ const Loginf2 = () => {
 			setError("");
 			setLoading(true);
 			const res = await axios.post(
-				"http://localhost:3080/api/user/login2",
+				"https://microsoft-engage-facerecognition.azurewebsites.net/api/user/login2",
 				{
 					tOTP: tOTPRef.current.value,
 				},

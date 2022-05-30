@@ -20,7 +20,7 @@ const Signupf1 = () => {
 			if (passwordRef.current.value !== passwordConfirmRef.current.value)
 				throw new Error("Passwords do not match");
 			const res = await axios.post(
-				"http://localhost:3080/api/user/signup1",
+				"https://microsoft-engage-facerecognition.azurewebsites.net/api/user/signup1",
 				{
 					email: emailRef.current.value,
 					password: passwordRef.current.value,

@@ -56,8 +56,6 @@ app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
-module.exports = app;
-
 
 /**
  * Host the whole app, connecting to port :3080
