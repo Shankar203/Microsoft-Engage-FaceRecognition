@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import CamPreview from "../../components/CamPreview";
 import { imageCapturer } from "../../components/imageCapturer";
 
 const Loginf3 = () => {
+	const navigate = useNavigate();
 	const videoParentRef = useRef();
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState("");
