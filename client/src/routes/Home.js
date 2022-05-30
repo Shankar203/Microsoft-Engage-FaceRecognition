@@ -9,13 +9,13 @@ const Home = () => {
 			<Navbar />
 			<div style={{ maxWidth: "500px" }} className="mt-4 p-4 fs-5 lh-1 font-monospace rounded-3 card mx-auto">
 				<p className="card-text">
-					<b>Name:</b> {user.user.name}
+					<b>User:</b> {user.user.email.split("@")[0]}
 				</p>
 				<p className="card-text">
 					<b>Email:</b> {user.user.email}
 				</p>
 				<p className="card-text">
-					<b>PrevLoign:</b> {user.user.prevLogin}
+					<b>PrevLoign:</b> {user.user.createdAt}
 				</p>
 			</div>
 		</div>

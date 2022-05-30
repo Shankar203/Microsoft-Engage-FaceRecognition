@@ -25,7 +25,7 @@ const signup_f1 = async (req, res, next) => {
 		const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
 		// Create a new document, and add it the databse users collection
-		const user = { email: req.body.email, name: req.body.name, password: hashedPassword };
+		const user = { email: req.body.email, password: hashedPassword };
 		const u = await User.create(user);
 
 		// If User created, create a Cookie and append it to the Resonse Object

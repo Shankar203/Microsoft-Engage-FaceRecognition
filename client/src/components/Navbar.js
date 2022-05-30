@@ -3,7 +3,7 @@ const Navbar = () => {
 		<nav className="navbar navbar-light bg-white">
 			<div className="container-sm">
 				<a className="navbar-brand" href="/">
-					<h3>Face Recognition</h3>
+					<h3>3Factor Authentication</h3>
 				</a>
 				<a href="https://github.com/Shankar203/Microsoft-Engage-FaceRecognition" className="nav-link">
 					<img

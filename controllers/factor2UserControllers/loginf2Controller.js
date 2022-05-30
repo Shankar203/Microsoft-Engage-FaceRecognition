@@ -8,6 +8,7 @@ const getLogin_f2 = async (req, res, next) => {
 		// Check if User trys to bypass prev authentication steps
 		if (!res.locals.user.fac) throw new Error("Can't Skip factor1");
 
+		console.log(res.locals.user._doc.tOTPSecret);
 		// QR Code per user should be only generated once
 		if (res.locals.user._doc.tOTPSecret) throw new Error("User has already paired with the QR Code");
 
