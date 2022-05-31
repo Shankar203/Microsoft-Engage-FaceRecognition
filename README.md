@@ -8,10 +8,6 @@
 
 ![slide1](docs/presentation/Slide1.png)
 # Table of Content
-- [Three Factor Authentication](#three-factor-authentication)
-  - [Imp Links](#imp-links)
-- [Table of Content](#table-of-content)
-- [Problem Statement](#problem-statement)
 - [Abstract](#abstract)
 - [Introduction](#introduction)
 - [Approach](#approach)
@@ -27,15 +23,6 @@
 - [Key Features](#key-features)
 - [Citation](#citation)
 
-# Problem Statement 
-**Face Recognition**, Develop a browser-based application or a native mobile application to demonstrate application of Face Recognition.
-- Preventing crime
-- **Device security**
-- Smarter advertising
-- Finding mission people or lost pets
-- Diagnose diseases
-- Tracking attendance
-- Facilitate secure transactions
 
 # Abstract
 Presently the risk of Cyber Attacks has increased a lot, and there is'nt any Technology that can withstand. Do you know how frequently malicious hackers attack our data and privacy? Every 39 seconds! According to reliable estimates, Cybercrimes are expected to cost the world around 6 trillion dollars annually by 2021.  Shocking, right? During last year, over 10 billion data breaches were recorded worldwide, And 79% of companies have experienced at least one in the past 18 months.
