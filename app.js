@@ -59,6 +59,6 @@ app.use("/api/user", userRoutes);
  * @constant PORT can be random port assigined by web-service, if 
  * it does'nt then connect to :3080
  */
-app.listen(3080, console.log("server started at port: " + PORT));
+app.listen(PORT, console.log("server started at port: " + PORT));
 
 module.exports = app;
