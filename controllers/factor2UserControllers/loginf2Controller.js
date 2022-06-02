@@ -3,12 +3,24 @@ const QRcode = require("qrcode");
 const { User } = require("../../models/userModel.js");
 const { createToken } = require("../../middlewares/userAuth.js");
 
+
+/**
+ * User Controller, fires Asynchronously over get req to /login2 route
+ * 
+ * Check the factor of authentication, now check if qr code has already been generated, if 
+ * not generate a new totp_secret and store in the database else send the generated one, use 
+ * qrcode todataurl to generate image corresponding to the totp_url.
+ * 
+ * @param {object} req Parsed json object received from Client
+ * @param {object} res Parsed json object Set to the Client
+ * @param {function} next function fired to move to next middleware
+ * @returns {Promise} Response Object
+ */
 const getLogin_f2 = async (req, res, next) => {
 	try {
 		// Check if User trys to bypass prev authentication steps
 		if (!res.locals.user.fac) throw new Error("Can't Skip factor1");
 
-		console.log(res.locals.user._doc.tOTPSecret);
 		// QR Code per user should be only generated once
 		if (res.locals.user._doc.tOTPSecret) throw new Error("User has already paired with the QR Code");
 
@@ -25,6 +37,19 @@ const getLogin_f2 = async (req, res, next) => {
 	}
 };
 
+
+/**
+ * User Controller, fires Asynchronously over post req to /login2 route
+ * 
+ * Check the factor of authentication, get totp_secret from database and compare 
+ * that with totp from client using speakeasy totp verify, if verified update the 
+ * cookie and append it to response.
+ * 
+ * @param {object} req Parsed json object received from Client
+ * @param {object} res Parsed json object Set to the Client
+ * @param {function} next function fired to move to next middleware
+ * @returns {Promise} Response Object
+ */
 const postLogin_f2 = async (req, res, next) => {
 	try {
 		// Check if User trys to bypass prev authentication steps

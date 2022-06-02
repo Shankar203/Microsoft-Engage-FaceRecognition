@@ -2,12 +2,13 @@ const { User } = require("../../models/userModel.js");
 const { createToken } = require("../../middlewares/userAuth.js");
 const { compare, getFacialEmbeddings } = require("../../face_recognition/recognize.js");
 
+
 /**
- * User Controller, fires Asynchronously over /login route
+ * User Controller, fires Asynchronously over /login3 route
  *
- * Check if User exists, and get the corresponding embedding vector now compare them
- * with the generated embeddings, if similarity is greater than a threshold, send a cookie
- * else log error to console setting status code to 400.
+ * Check if User exists and authentication step, and get the corresponding embedding vector 
+ * now compare them with the generated embeddings, if similarity is greater than a threshold,
+ * send a cookie else log error to console setting status code to 400.
  *
  * @param {object} req Parsed json object received from Client
  * @param {object} res Parsed json object Set to the Client
