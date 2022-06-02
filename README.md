@@ -8,6 +8,9 @@
 
 ![slide1](docs/presentation/Slide1.png)
 # Table of Content
+- [Three Factor Authentication](#three-factor-authentication)
+  - [Imp Links](#imp-links)
+- [Table of Content](#table-of-content)
 - [Abstract](#abstract)
 - [Introduction](#introduction)
 - [Approach](#approach)
@@ -68,10 +71,10 @@ And now comes the recognition part, I am using Cosine Similarity, Chi-Square Dis
 - **Netlify**: https://microsoft-engage-facerecognition.netlify.app
 - **Vercel**: https://microsoft-engage-face-recognition-client.vercel.app
 - **Heroku**: https://microsoft-engage-face-recog.herokuapp.com
-- **Glitch**: https://microsoft-engage-facerecognition.glitch.me
 ### Development
 - **Gitpod:** https://gitpod.io/#snapshot/1ee51682-59c1-4b35-a4d3-0de033c30a76
-- **CodeSandbox:** https://codesandbox.io/s/microsoft-engage-facerecognition-um1qpp
+- **CodeSandbox:** https://codesandbox.io/s/microsoft-engage-facerecognition-64f31u
+- **Glitch**: https://glitch.com/edit/#!/microsoft-engage-facerecognition
 ### Run Locally
 - <b>Start Server</b>
 
