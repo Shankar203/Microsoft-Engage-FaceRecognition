@@ -76,7 +76,13 @@ const Loginf2 = () => {
 						ref={tOTPRef}
 						disabled={loading}
 					/>
-					{tOTPauthURL && <img src={tOTPauthURL} alt="tOTP QR-Code" />}
+					{tOTPauthURL && (
+						<>
+							<img src={tOTPauthURL} alt="tOTP QR-Code" />
+							<br />
+							Scan QR-Code using Authenticator app and enter generated tOTP.
+						</>
+					)}
 					<div className="d-grid mt-3">
 						<button type="submit" disabled={loading || success} className="btn btn-primary">
 							{loading && (
