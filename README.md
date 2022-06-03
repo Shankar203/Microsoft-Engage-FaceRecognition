@@ -1,6 +1,6 @@
 # Three Factor Authentication
 #### Add an additional layer of security to the old 2FA, using Facial Biometric Scan
-## Imp Links
+### Imp Links
 - Microsoft Azure: https://microsoft-engage-facerecognition.azurewebsites.net
 - Google GCP: https://engage-facerecognition.web.app
 - Presentation: https://www.canva.com/design/DAFB4UYeqUo/qN1cLW12dbMYeyC01oamKg/view
@@ -8,10 +8,6 @@
 
 ![slide1](docs/presentation/Slide1.png)
 # Table of Content
-- [Three Factor Authentication](#three-factor-authentication)
-      - [Add an additional layer of security to the old 2FA, using Facial Biometric Scan](#add-an-additional-layer-of-security-to-the-old-2fa-using-facial-biometric-scan)
-  - [Imp Links](#imp-links)
-- [Table of Content](#table-of-content)
 - [Abstract](#abstract)
 - [Approach](#approach)
 - [Introduction](#introduction)
@@ -93,11 +89,11 @@ And now comes the recognition part, I am using Cosine Similarity, Chi-Square Dis
   ```
 # Key Features
 **3FA = Facial Biometric Authentication + The old 2FA**
-<p style="width: 100%; text-align: justify;"> 
-<img width="20%" src="./docs/asserts/application1.gif">
-<img width="22.5%" src="./docs/asserts/application2.gif">
-<img width="20%" src="./docs/asserts/application3.gif">
-<img width="20%" src="./docs/asserts/application4.gif">
+<p style="width: 100%;"> 
+<img width="22%" src="./docs/asserts/application1.gif">
+<img width="24.75%" src="./docs/asserts/application2.gif">
+<img width="22%" src="./docs/asserts/application3.gif">
+<img width="22%" src="./docs/asserts/application4.gif">
 </p>
 
 - Scan Face and Securely send Biometrics to api endpoint
@@ -115,6 +111,11 @@ And now comes the recognition part, I am using Cosine Similarity, Chi-Square Dis
     - ..........
 
 # Demo
+<p style="width: 100%;"> 
+<img width="22%" src="./docs/demo/demo2.gif">
+<img width="22%" src="./docs/demo/demo3.gif">
+</p>
+
 # Citation
 - ArcFace arXiv Official Paper, https://arxiv.org/abs/1801.07698
 - InsightFace Repository from DeepInsight (ArcFace official release), https://github.com/deepinsight/insightface
