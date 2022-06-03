@@ -111,9 +111,13 @@ And now comes the recognition part, I am using Cosine Similarity, Chi-Square Dis
     - ..........
 
 # Demo
-<p style="width: 100%;"> 
-<img width="22%" src="./docs/demo/demo2.gif">
-<img width="22%" src="./docs/demo/demo3.gif">
+<p align="center" width="100%">
+    
+ <img width="80%" src="https://user-images.githubusercontent.com/77261089/171930091-302fc664-2c4e-4350-a233-a44c528e456c.gif">
+</p>
+<p align="center" width="100%">
+<img width="40.3%" src="./docs/demo/demo2.gif">
+<img width="40%" src="./docs/demo/demo3.gif">
 </p>
 
 # Citation
