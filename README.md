@@ -8,6 +8,10 @@
 
 ![slide1](docs/presentation/Slide1.png)
 # Table of Content
+- [Three Factor Authentication](#three-factor-authentication)
+      - [Add an additional layer of security to the old 2FA, using Facial Biometric Scan](#add-an-additional-layer-of-security-to-the-old-2fa-using-facial-biometric-scan)
+    - [Imp Links](#imp-links)
+- [Table of Content](#table-of-content)
 - [Abstract](#abstract)
 - [Approach](#approach)
 - [Introduction](#introduction)
@@ -112,8 +116,7 @@ And now comes the recognition part, I am using Cosine Similarity, Chi-Square Dis
 
 # Demo
 <p align="center" width="100%">
-    
- <img width="80%" src="https://user-images.githubusercontent.com/77261089/171930091-302fc664-2c4e-4350-a233-a44c528e456c.gif">
+<img width="80%" src="./docs/demo/demo1.gif">
 </p>
 <p align="center" width="100%">
 <img width="40.3%" src="./docs/demo/demo2.gif">
