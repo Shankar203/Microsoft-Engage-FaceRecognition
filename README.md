@@ -8,10 +8,6 @@
 
 ![slide1](docs/presentation/Slide1.png)
 # Table of Content
-- [Three Factor Authentication](#three-factor-authentication)
-      - [Add an additional layer of security to the old 2FA, using Facial Biometric Scan](#add-an-additional-layer-of-security-to-the-old-2fa-using-facial-biometric-scan)
-    - [Imp Links](#imp-links)
-- [Table of Content](#table-of-content)
 - [Abstract](#abstract)
 - [Approach](#approach)
 - [Introduction](#introduction)
