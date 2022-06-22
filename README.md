@@ -47,7 +47,7 @@ These outputs were called unified facial embeddings. They were send into our NoS
 And now comes the recognition part, I am using Cosine Similarity, Chi-Square Distance, Simple Euclidean Distance, to compare vector form database with the one generated during login. And If the distance is less than a threshold, face is recognized send a cookie setting status to 200, else send an error setting status to 400, and I have used json web token to handle authentication part.
 # Architecture
 [![archi](docs/asserts/Architecture.png)](https://www.figma.com/file/7zmI0oLfl8JrWI6OjIU0mm/Microsoft-Engage-FaceRecognition)
-<div align="center">I have used figma to implement this nice design, and the link for the file is <a src="https://www.figma.com/file/7zmI0oLfl8JrWI6OjIU0mm/">here</a></div>
+<div align="center">I have used figma to implement this nice design, and the link for the file is <a href="https://www.figma.com/file/7zmI0oLfl8JrWI6OjIU0mm/">here</a></div>
 
 # Tech Stack
 ![mern](docs/asserts/mern.png)
@@ -89,12 +89,12 @@ And now comes the recognition part, I am using Cosine Similarity, Chi-Square Dis
   ```
 # Key Features
 **3FA = Facial Biometric Authentication + The old 2FA**
-<p style="width: 100%;"> 
+<!-- <p style="width: 100%;"> 
 <img width="22%" src="./docs/asserts/application1.gif">
 <img width="24.75%" src="./docs/asserts/application2.gif">
 <img width="22%" src="./docs/asserts/application3.gif">
 <img width="22%" src="./docs/asserts/application4.gif">
-</p>
+</p> -->
 
 - Scan Face and Securely send Biometrics to api endpoint
 - Facial Mesh Generation
@@ -112,12 +112,12 @@ And now comes the recognition part, I am using Cosine Similarity, Chi-Square Dis
 
 # Demo
 <p align="center" width="100%">
-<img width="80%" src="./docs/demo/demo1.gif">
+<img width="100%" src="./docs/demo/demo1.gif">
 </p>
-<p align="center" width="100%">
+<!-- <p align="center" width="100%">
 <img width="40.3%" src="./docs/demo/demo2.gif">
 <img width="40%" src="./docs/demo/demo3.gif">
-</p>
+</p> -->
 
 # Citation
 - ArcFace arXiv Official Paper, https://arxiv.org/abs/1801.07698
